@@ -2,6 +2,11 @@ startGame(8, 8, 15);
 
 function startGame(WIDTH, HEIGHT, BOMBS_COUNT) {
   const field = document.querySelector('.field');
+  if (!field) {
+    console.error('Element with class "field" not found');
+    return;
+  }
+
   const cellsCount = WIDTH * HEIGHT;
   field.innerHTML = '<button></button>'.repeat(cellsCount);
   const cells = [...field.children];
@@ -21,6 +26,10 @@ function startGame(WIDTH, HEIGHT, BOMBS_COUNT) {
     open(row, column);
   });
 
+  function isValid(row, column) {
+    return row >= 0 && row < HEIGHT && column >= 0 && column < WIDTH;
+  }
+
   function getCount(row, column) {
     let count = 0;
     for (let x = -1; x <= 1; x++) {
@@ -34,13 +43,30 @@ function startGame(WIDTH, HEIGHT, BOMBS_COUNT) {
   }
 
   function open(row, column) {
+    if (!isValid(row, column)) return;
     const index = row * WIDTH + column;
     const cell = cells[index];
-    cell.innerHTML = isBomb(row, column) ? 'X' : getCount(row, column);
+    if (cell.disabled === true) return;
+
     cell.disabled = true;
+
+    if (isBomb(row, column)) {
+      cell.innerHTML = 'X';
+    } else {
+      const count = getCount(row, column);
+      cell.innerHTML = count !== 0 ? count : '';
+      if (count === 0) {
+        for (let x = -1; x <= 1; x++) {
+          for (let y = -1; y <= 1; y++) {
+            open(row + y, column + x);
+          }
+        }
+      }
+    }
   }
 
   function isBomb(row, column) {
+    if (!isValid(row, column)) return false;
     const index = row * WIDTH + column;
     return bombs.includes(index);
   }
