@@ -1,4 +1,4 @@
-startGame(8, 8, 15);
+startGame(8, 8, 5);
 
 function startGame(WIDTH, HEIGHT, BOMBS_COUNT) {
   const field = document.querySelector('.field');
@@ -8,6 +8,8 @@ function startGame(WIDTH, HEIGHT, BOMBS_COUNT) {
   }
 
   const cellsCount = WIDTH * HEIGHT;
+  let closedCount = cellsCount;
+
   field.innerHTML = '<button></button>'.repeat(cellsCount);
   const cells = [...field.children];
 
@@ -49,6 +51,7 @@ function startGame(WIDTH, HEIGHT, BOMBS_COUNT) {
     if (cell.disabled === true) return;
 
     cell.disabled = true;
+    closedCount--;
 
     if (isBomb(row, column)) {
       cell.innerHTML = 'X';
@@ -63,6 +66,10 @@ function startGame(WIDTH, HEIGHT, BOMBS_COUNT) {
           }
         }
       }
+    }
+
+    if (closedCount <= BOMBS_COUNT) {
+      alert('You won!');
     }
   }
 
