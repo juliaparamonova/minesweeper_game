@@ -52,6 +52,7 @@ function startGame(WIDTH, HEIGHT, BOMBS_COUNT) {
 
     if (isBomb(row, column)) {
       cell.innerHTML = 'X';
+      alert('You loser');
     } else {
       const count = getCount(row, column);
       cell.innerHTML = count !== 0 ? count : '';
