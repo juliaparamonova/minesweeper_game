@@ -53,8 +53,10 @@ function startGame(WIDTH, HEIGHT, BOMBS_COUNT) {
     return count;
   }
 
+  let gameOver = false;
+
   function open(row, column) {
-    if (!isValid(row, column)) return;
+    if (gameOver || !isValid(row, column)) return;
     const index = row * WIDTH + column;
     const cell = cells[index];
     if (cell.disabled === true) return;
@@ -64,7 +66,10 @@ function startGame(WIDTH, HEIGHT, BOMBS_COUNT) {
 
     if (isBomb(row, column)) {
       cell.innerHTML = 'X';
-      alert('You lost! Try again.');
+      if (!gameOver) {
+        alert('You lost! Try again.');
+        gameOver = true;
+      }
     } else {
       const count = getCount(row, column);
       cell.innerHTML = count !== 0 ? count : '';
@@ -77,8 +82,9 @@ function startGame(WIDTH, HEIGHT, BOMBS_COUNT) {
       }
     }
 
-    if (closedCount === BOMBS_COUNT) {
+    if (closedCount === BOMBS_COUNT && !gameOver) {
       alert('You won!');
+      gameOver = true;
     }
   }
 
