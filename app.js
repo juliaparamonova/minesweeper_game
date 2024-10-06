@@ -1,9 +1,9 @@
 document.getElementById('startButton').addEventListener('click', () => {
-  const bombsCount = parseInt(document.getElementById('bombsCount').value, 32);
+  const bombsCount = parseInt(document.getElementById('bombsCount').value, 10);
 
   if (bombsCount > 32) {
     alert('The number of bombs cannot exceed 32');
-    bombsCountInput.value = 32;
+    document.getElementById('bombsCount').value = 32;
     return;
   }
   startGame(8, 8, bombsCount);
