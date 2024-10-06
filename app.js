@@ -1,4 +1,13 @@
-startGame(8, 8, 5);
+document.getElementById('startButton').addEventListener('click', () => {
+  const bombsCount = parseInt(document.getElementById('bombsCount').value, 32);
+
+  if (bombsCount > 32) {
+    alert('The number of bombs cannot exceed 32');
+    bombsCountInput.value = 32;
+    return;
+  }
+  startGame(8, 8, bombsCount);
+});
 
 function startGame(WIDTH, HEIGHT, BOMBS_COUNT) {
   const field = document.querySelector('.field');
@@ -55,7 +64,7 @@ function startGame(WIDTH, HEIGHT, BOMBS_COUNT) {
 
     if (isBomb(row, column)) {
       cell.innerHTML = 'X';
-      alert('You loser');
+      alert('You lost! Try again.');
     } else {
       const count = getCount(row, column);
       cell.innerHTML = count !== 0 ? count : '';
@@ -68,7 +77,7 @@ function startGame(WIDTH, HEIGHT, BOMBS_COUNT) {
       }
     }
 
-    if (closedCount <= BOMBS_COUNT) {
+    if (closedCount === BOMBS_COUNT) {
       alert('You won!');
     }
   }

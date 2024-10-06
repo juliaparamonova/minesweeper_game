@@ -10,9 +10,19 @@
 </head>
 
 <body>
-    <h1>Minesweeper</h1>
-    <div class="field"></div>
+    <div class="container">
+        <h1 class="title">Minesweeper</h1>
+        <div class="main">
 
+            <div class="game">
+                <label class="numbers" for="bombsCount">Number of bombs:</label>
+                <input class="input" type="number" id="bombsCount" value="5" min="1" max="32">
+                <button class="btn" id="startButton"> Start Game</button>
+            </div>
+            <div class="field"></div>
+            <div class="field"></div>
+        </div>
+    </div>
 </body>
 
 </html>

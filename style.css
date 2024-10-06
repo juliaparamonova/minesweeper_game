@@ -1,6 +1,7 @@
 .field {
     display: grid;
     grid-template-columns: repeat(8, 40px);
+    justify-content: center;
 
 }
 
@@ -8,4 +9,125 @@ button {
     height: 40px;
 
     font-size: 24px;
+}
+
+
+.container {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg,
+            #3498db,
+            #2ecc71);
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    border-radius: 10px;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(90deg,
+            rgba(255, 255, 255, 0.1) 1px,
+            transparent 1px),
+        linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+
+}
+
+body {
+
+    height: 100vh;
+    margin: 0;
+
+}
+
+.title {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    padding: 20px 40px;
+    font-size: 46px;
+}
+
+.main {
+    align-items: center;
+}
+
+.game {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.numbers {
+    font-size: 24px;
+    margin-right: 20px;
+}
+
+
+.btn {
+    margin-left: 30px;
+    padding: 0.5em 2em 0.5em 2.5em;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 15px;
+    color: #fff6fb;
+    letter-spacing: 0.3em;
+    text-shadow: -2px 2px 5px #fd3084;
+    background-color: transparent;
+    border: 2px solid #feb1de;
+    box-shadow:
+        0 0 0px 1px #f11271,
+        0 0 10px 2px #fd3084,
+        inset 0 0 0px 1px #f11271,
+        inset 0 0 10px 2px #fd3084;
+    transition: 100ms;
+    cursor: pointer;
+}
+
+
+.input {
+    margin-left: 30px;
+    padding: 0.5em 2em 0.5em 2.5em;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 15px;
+    color: #fff6fb;
+    letter-spacing: 0.3em;
+    text-shadow: -2px 2px 5px #fd3084;
+    background-color: transparent;
+    border: 2px solid #feb1de;
+    box-shadow:
+        0 0 0px 1px #f11271,
+        0 0 10px 2px #fd3084,
+        inset 0 0 0px 1px #f11271,
+        inset 0 0 10px 2px #fd3084;
+    transition: 100ms;
+    cursor: pointer;
+}
+
+.btn:hover {
+    box-shadow:
+        0 0 0px 1px #f11271,
+        0 0 10px 2px #fd3084,
+        inset 0 0 0px 1px #f11271,
+        inset 0 0 30px 2px #fd3084;
+    text-shadow: 0 0 10px #fd3084;
+    transform: translateY(-5px);
+}
+
+.btn:active {
+    box-shadow:
+        0 0 0px 1px #f11271,
+        0 0 25px 2px #fd3084,
+        inset 0 0 0px 1px #f11271,
+        inset 0 0 30px 2px #fd3084;
+    transform: translateY(1px);
 }
