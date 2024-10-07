@@ -41,14 +41,13 @@
     body {
         height: 100vh;
         margin: 0;
-
     }
 
     .title {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         display: flex;
         justify-content: center;
-        padding: 20px 40px;
+
         font-size: 46px;
     }
 
