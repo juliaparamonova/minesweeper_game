@@ -52,6 +52,15 @@ function startGame(WIDTH, HEIGHT, BOMBS_COUNT) {
     }
     return count;
   }
+  function openAllBombs() {
+    bombs.forEach(index => {
+      const cell = cells[index];
+      if (cell.innerHTML !== 'X') {
+        cell.innerHTML = 'X';
+        cell.disabled = true;
+      }
+    });
+  }
 
   let gameOver = false;
 
@@ -68,6 +77,7 @@ function startGame(WIDTH, HEIGHT, BOMBS_COUNT) {
       cell.innerHTML = 'X';
       if (!gameOver) {
         alert('You lost! Try again.');
+        openAllBombs();
         gameOver = true;
       }
     } else {

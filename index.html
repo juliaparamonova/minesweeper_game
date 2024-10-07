@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minesweeper</title>
+    <title class="title_main">Minesweeper</title>
     <script src="app.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -15,7 +15,9 @@
         <div class="main">
 
             <div class="game">
-                <label class="numbers" for="bombsCount">Number of bombs:</label>
+                <label class="numbers" for="bombsCount">
+                    Number of bombs:
+                </label>
                 <input class="input" type="number" id="bombsCount" value="5" min="1" max="32">
                 <button class="btn" id="startButton"> Start Game</button>
             </div>
