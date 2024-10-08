@@ -37,6 +37,22 @@ function startGame(WIDTH, HEIGHT, BOMBS_COUNT) {
     open(row, column);
   });
 
+  field.addEventListener('contextmenu', event => {
+    event.preventDefault();
+    if (event.target.tagName !== 'BUTTON') {
+      return;
+    }
+
+    const cell = event.target;
+    if (cell.classList.contains('flag')) {
+      cell.classList.remove('flag');
+      cell.textContent = '';
+    } else {
+      cell.classList.add('flag');
+      cell.textContent = '🚩';
+    }
+  });
+
   function isValid(row, column) {
     return row >= 0 && row < HEIGHT && column >= 0 && column < WIDTH;
   }
@@ -52,6 +68,7 @@ function startGame(WIDTH, HEIGHT, BOMBS_COUNT) {
     }
     return count;
   }
+
   function openAllBombs() {
     bombs.forEach(index => {
       const cell = cells[index];
