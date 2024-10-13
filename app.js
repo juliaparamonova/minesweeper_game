@@ -112,6 +112,7 @@ function startGame(WIDTH, HEIGHT, BOMBS_COUNT) {
     } else {
       const count = getCount(row, column);
       cell.innerHTML = count !== 0 ? count : '';
+      cell.style.backgroundColor = count === 0 ? 'transparent' : ''; // Сделать прозрачным, если 0
       if (count === 0) {
         for (let x = -1; x <= 1; x++) {
           for (let y = -1; y <= 1; y++) {
