@@ -1,6 +1,5 @@
 document.getElementById('startButton').addEventListener('click', () => {
   const bombsCount = parseInt(document.getElementById('bombsCount').value, 10);
-
   if (bombsCount > 32) {
     alert('The number of bombs cannot exceed 32');
     document.getElementById('bombsCount').value = 32;
@@ -15,13 +14,10 @@ function startGame(WIDTH, HEIGHT, BOMBS_COUNT) {
     console.error('Element with class "field" not found');
     return;
   }
-
   const cellsCount = WIDTH * HEIGHT;
   let closedCount = cellsCount;
-
   field.innerHTML = '<button></button>'.repeat(cellsCount);
   const cells = [...field.children];
-
   const bombs = [...Array(cellsCount).keys()]
     .sort(() => Math.random() - 0.5)
     .slice(0, BOMBS_COUNT);
@@ -30,7 +26,6 @@ function startGame(WIDTH, HEIGHT, BOMBS_COUNT) {
     if (event.target.tagName !== 'BUTTON') {
       return;
     }
-
     const index = cells.indexOf(event.target);
     const column = index % WIDTH;
     const row = Math.floor(index / WIDTH);
@@ -42,14 +37,33 @@ function startGame(WIDTH, HEIGHT, BOMBS_COUNT) {
     if (event.target.tagName !== 'BUTTON') {
       return;
     }
-
     const cell = event.target;
     if (cell.classList.contains('flag')) {
       cell.classList.remove('flag');
       cell.textContent = '';
     } else {
       cell.classList.add('flag');
-      cell.textContent = '🚩';
+      cell.textContent = '';
+    }
+  });
+
+  field.addEventListener('touchstart', event => {
+    if (event.target.tagName !== 'BUTTON') {
+      return;
+    }
+    if (event.target.textContent.trim() === '') {
+      event.target.style.backgroundColor = 'transparent';
+    }
+  });
+
+  field.addEventListener('touchend', event => {
+    if (event.target.tagName !== 'BUTTON') {
+      return;
+    }
+    if (event.target.textContent.trim() === '') {
+      setTimeout(() => {
+        event.target.style.backgroundColor = 'transparent';
+      }, 100);
     }
   });
 
@@ -86,10 +100,8 @@ function startGame(WIDTH, HEIGHT, BOMBS_COUNT) {
     const index = row * WIDTH + column;
     const cell = cells[index];
     if (cell.disabled === true) return;
-
     cell.disabled = true;
     closedCount--;
-
     if (isBomb(row, column)) {
       cell.innerHTML = 'X';
       if (!gameOver) {
@@ -108,7 +120,6 @@ function startGame(WIDTH, HEIGHT, BOMBS_COUNT) {
         }
       }
     }
-
     if (closedCount === BOMBS_COUNT && !gameOver) {
       alert('You won!');
       gameOver = true;
