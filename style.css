@@ -137,17 +137,20 @@
         transform: translateY(1px);
     }
 
-}
-
-@media screen and (min-width: 768px) {
-    button {
-        font-size: 24px;
+    .field button {
+        border-radius: 0;
+        border: 1px solid rgba(0, 0, 0, 0.1);
     }
 
-}
+    @media screen and (min-width: 768px) {
+        button {
+            font-size: 24px;
+        }
 
-@media screen and (min-width: 1280px) {
-    .title {
-        font-size: 54px;
     }
-}
+
+    @media screen and (min-width: 1280px) {
+        .title {
+            font-size: 54px;
+        }
+    }
