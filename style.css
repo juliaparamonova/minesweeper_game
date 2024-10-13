@@ -140,6 +140,12 @@
     .field button {
         border-radius: 0;
         border: 1px solid rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s;
+    }
+
+    .field button:active {
+        background-color: transparent;
+
     }
 
     @media screen and (min-width: 768px) {
@@ -154,3 +160,4 @@
             font-size: 54px;
         }
     }
+}
